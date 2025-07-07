@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mind Map: SAP HANA for Containerized Java Development</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f9fafb;
+        }
+        /* The autoloader will create the svg and container */
+        .markmap {
+            width: 100vw;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="markmap">
+---
+markmap:
+  colorScheme: 'blue'
+  initialExpandLevel: 2
+  maxWidth: 300
+---
+# SAP HANA & Containerized Java
+
+## Strategic Imperative
+- **Core Architecture**
+  - In-Memory (Speed)
+  - Columnar (Analytics & Compression)
+  - MPP (Scalability)
+- **HTAP Paradigm**
+  - Combines OLTP & OLAP
+  - Eliminates ETL Latency
+  - Enables "Real-Time Enterprise"
+- **Multi-Model Engine**
+  - Graph, Spatial, JSON, etc.
+  - Centralizes Persistence
+  - Increases Vendor Lock-In
+
+## Containerization Conundrum
+- **Official Policy (Production)**
+  - <font color="red">Unsupported in Containers</font>
+  - Per SAP Note 1122387
+  - High Operational Risk
+- **Developer Practice**
+  - <font color="green">`hanaexpress` Docker Image</font>
+  - Sanctioned for Dev
+  - Creates Policy Ambiguity
+- **The Conflict & Result**
+  - Breaks Environmental Parity
+  - "Two-Pipeline" Problem
+  - Strategic push to HANA Cloud
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/markmap-autoloader@0.15.4"></script>
+
+</body>
+</html>
