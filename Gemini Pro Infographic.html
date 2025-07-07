@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAP HANA for Containerized Java Development: An Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+        }
+        .chart-container {
+            position: relative;
+            margin: auto;
+            height: 320px;
+            width: 100%;
+            max-width: 500px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .kpi-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .kpi-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .flow-arrow {
+            font-size: 2.5rem;
+            color: #9ca3af;
+            line-height: 1;
+        }
+        .flow-box {
+            border: 2px dashed;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            text-align: center;
+            font-weight: 600;
+        }
+        #geminiModal {
+            transition: opacity 0.3s ease;
+        }
+        .spinner {
+            border-top-color: #3498db;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-xl md:text-2xl font-bold text-[#004FFF]">HANA & Java: A Developer's Guide</h1>
+            <div class="hidden md:flex space-x-6 text-sm font-semibold">
+                <a href="#power" class="text-gray-600 hover:text-[#004FFF]">The Power</a>
+                <a href="#dilemma" class="text-gray-600 hover:text-[#004FFF]">The Dilemma</a>
+                <a href="#equation" class="text-gray-600 hover:text-[#004FFF]">The Equation</a>
+                <a href="#showdown" class="text-gray-600 hover:text-[#004FFF]">The Showdown</a>
+                <a href="#crossroads" class="text-gray-600 hover:text-[#004FFF]">The Crossroads</a>
+                <a href="#advisor" class="text-gray-600 hover:text-[#004FFF]">✨ Advisor</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="power" class="text-center py-16">
+            <h2 class="text-4xl md:text-5xl font-extrabold mb-4 text-[#004FFF]">The Power and The Promise of SAP HANA</h2>
+            <p class="max-w-3xl mx-auto text-lg text-gray-600 mb-12">SAP HANA isn't just another database. Its unique in-memory, columnar architecture delivers game-changing performance for real-time analytics on live transactional data (HTAP).</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="kpi-card">
+                    <span class="text-6xl font-black text-[#FF0073]">3600x</span>
+                    <p class="mt-2 text-xl font-semibold">Faster Than Legacy DBs</p>
+                    <p class="text-gray-500 mt-1">By eliminating disk I/O latency.</p>
+                </div>
+                <div class="kpi-card">
+                    <span class="text-6xl font-black text-[#8200FF]">15M</span>
+                    <p class="mt-2 text-xl font-semibold">Aggregations/sec</p>
+                    <p class="text-gray-500 mt-1">Per core, thanks to Massively Parallel Processing.</p>
+                </div>
+                <div class="kpi-card">
+                    <span class="text-6xl font-black text-[#00B3FF]">7x</span>
+                    <p class="mt-2 text-xl font-semibold">Data Compression</p>
+                    <p class="text-gray-500 mt-1">Achieved via its efficient columnar storage.</p>
+                </div>
+            </div>
+        </section>
+
+        <hr class="my-12 border-t-2 border-gray-200">
+
+        <section id="dilemma" class="py-16">
+            <div class="text-center">
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-4 text-[#004FFF]">The Developer's Dilemma: A Broken Pipeline</h2>
+                <p class="max-w-3xl mx-auto text-lg text-gray-600 mb-12">Here lies the central conflict. SAP encourages containerized development but explicitly forbids containerized production, breaking the core DevOps promise of environmental parity.</p>
+            </div>
+            <div class="bg-white rounded-lg shadow-xl p-8 md:p-12">
+                <div class="flex flex-col md:flex-row items-center justify-around space-y-8 md:space-y-0 md:space-x-8">
+                    <div class="flex flex-col items-center">
+                        <div class="flow-box border-green-400 text-green-600 bg-green-50 w-64">
+                            <span class="text-2xl">✅</span>
+                            <h3 class="text-xl">Development</h3>
+                            <p class="font-normal text-sm">Use `saplabs/hanaexpress` in Docker. It's official and encouraged.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flow-arrow transform md:-rotate-90">↓</div>
+
+                    <div class="flex flex-col items-center">
+                        <div class="flow-box border-red-400 text-red-600 bg-red-50 w-64">
+                            <span class="text-2xl">❌</span>
+                            <h3 class="text-xl">Production</h3>
+                            <p class="font-normal text-sm">Running HANA in Docker is UNSUPPORTED per SAP Note 1122387.</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-center mt-12 text-gray-700 italic max-w-2xl mx-auto">This creates a "two-pipeline" problem, requiring separate deployment strategies for dev and prod, increasing complexity and the risk of "it worked on my machine" bugs.</p>
+            </div>
+        </section>
+
+        <hr class="my-12 border-t-2 border-gray-200">
+
+        <section id="equation" class="py-16">
+            <div class="text-center">
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-4 text-[#004FFF]">The Velocity Equation: Gains vs. Pains</h2>
+                <p class="max-w-3xl mx-auto text-lg text-gray-600 mb-12">Using HANA for Java development has a profound impact on speed, but it's a balance of significant accelerators and notable inhibitors.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-2xl font-bold mb-4 text-green-600">Accelerators: Where You Gain Speed</h3>
+                    <p class="mb-6 text-gray-600">HANA's power simplifies development in key areas, allowing teams to focus more on business logic.</p>
+                    <div class="chart-container"><canvas id="acceleratorsChart"></canvas></div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-2xl font-bold mb-4 text-red-600">Inhibitors: Where You Face Friction</h3>
+                    <p class="mb-6 text-gray-600">The platform's proprietary nature and heavyweight footprint introduce new challenges and learning curves.</p>
+                    <div class="chart-container"><canvas id="inhibitorsChart"></canvas></div>
+                </div>
+            </div>
+        </section>
+        
+        <hr class="my-12 border-t-2 border-gray-200">
+
+        <section id="showdown" class="py-16">
+            <div class="text-center">
+                 <h2 class="text-4xl md:text-5xl font-extrabold mb-4 text-[#004FFF]">Database Showdown: HANA vs. PostgreSQL</h2>
+                <p class="max-w-3xl mx-auto text-lg text-gray-600 mb-12">How does HANA stack up against a container-native champion like PostgreSQL for a modern Java team? The differences are stark.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-2xl font-bold mb-4 text-center">Local Developer Resource Footprint</h3>
+                    <p class="text-center text-gray-600 mb-4">The RAM required on a developer's machine just for the database container.</p>
+                    <div class="chart-container"><canvas id="resourceChart"></canvas></div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-2xl font-bold mb-4 text-center">Container-Native Feature Comparison</h3>
+                     <p class="text-center text-gray-600 mb-4">A comparison across key factors for a modern development workflow.</p>
+                    <div class="chart-container"><canvas id="comparisonRadarChart"></canvas></div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="my-12 border-t-2 border-gray-200">
+
+        <section id="crossroads" class="py-16">
+            <div class="text-center">
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-4 text-[#004FFF]">The Strategic Crossroads: Which Path to Choose?</h2>
+                <p class="max-w-3xl mx-auto text-lg text-gray-600 mb-12">The decision to use HANA is a strategic one. Based on your application's needs and your relationship with the SAP ecosystem, three distinct paths emerge.</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg shadow-lg p-6 border-t-4 border-[#FFBF00] flex flex-col">
+                    <h3 class="text-2xl font-bold mb-2">Path A: The Pragmatic Hybrid</h3>
+                    <p class="text-gray-600 mb-4 flex-grow">Use containerized HANA for development agility but deploy to a certified, non-containerized VM/server for production, maintaining SAP support.</p>
+                    <div class="mt-auto">
+                        <p class="font-semibold text-green-600">Pro: Balances developer speed with production stability.</p>
+                        <p class="font-semibold text-red-600">Con: Creates an environment gap and requires dual ops skillsets.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6 border-t-4 border-[#8200FF] flex flex-col">
+                    <h3 class="text-2xl font-bold mb-2">Path B: Cloud-Native Alignment</h3>
+                    <p class="text-gray-600 mb-4 flex-grow">Commit to SAP's vision by using the Business Technology Platform (BTP) and targeting the fully managed SAP HANA Cloud as your database.</p>
+                     <div class="mt-auto">
+                        <p class="font-semibold text-green-600">Pro: Aligns with SAP's roadmap; fully managed and supported.</p>
+                        <p class="font-semibold text-red-600">Con: Deepest vendor lock-in and potentially highest long-term cost.</p>
+                    </div>
+                </div>
+                 <div class="bg-white rounded-lg shadow-lg p-6 border-t-4 border-[#FF0073] flex flex-col">
+                    <h3 class="text-2xl font-bold mb-2">Path C: The Decoupled Stack</h3>
+                    <p class="text-gray-600 mb-4 flex-grow">For non-core SAP apps, choose a container-first DB like PostgreSQL. Reserve HANA only for apps needing its unique HTAP capabilities.</p>
+                     <div class="mt-auto">
+                        <p class="font-semibold text-green-600">Pro: Maximizes DevOps alignment and leverages open source.</p>
+                        <p class="font-semibold text-red-600">Con: May create data silos requiring new integration efforts.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="my-12 border-t-2 border-gray-200">
+
+        <section id="advisor" class="py-16">
+            <div class="text-center">
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-4 text-[#004FFF]">✨ AI Strategic Advisor</h2>
+                <p class="max-w-3xl mx-auto text-lg text-gray-600 mb-8">Torn between paths? Describe your project, and our AI advisor will recommend the best strategy for your specific use case.</p>
+                <button id="showModalButton" class="bg-[#004FFF] text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-[#003BCC] transition-colors duration-300 transform hover:scale-105">
+                    Generate Custom Strategy
+                </button>
+            </div>
+            <div id="geminiResponse" class="mt-12 bg-white p-8 rounded-lg shadow-xl max-w-4xl mx-auto hidden">
+                <h3 class="text-2xl font-bold mb-4 text-center">Your Personalized Recommendation</h3>
+                <div id="geminiContent" class="text-gray-700 space-y-4"></div>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer class="bg-gray-800 text-white text-center p-6 mt-12">
+        <p>This infographic is a visual summary of the analysis of SAP HANA for containerized Java development.</p>
+        <p class="text-sm text-gray-400 mt-2">Crafted for strategic decision-making in modern enterprise environments.</p>
+    </footer>
+
+    <div id="geminiModal" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center p-4 z-50 hidden opacity-0">
+        <div class="bg-white rounded-lg shadow-2xl p-8 max-w-lg w-full transform transition-all duration-300 scale-95">
+            <h2 class="text-2xl font-bold mb-4">Describe Your Project</h2>
+            <p class="text-gray-600 mb-6">Provide a brief description of your application's primary goal. The more specific you are, the better the recommendation.</p>
+            <textarea id="projectDescription" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#004FFF] focus:border-transparent" rows="4" placeholder="e.g., 'A real-time inventory management dashboard for our 50 warehouses' or 'A customer-facing mobile app backend that needs to sync with SAP S/4HANA'"></textarea>
+            <div class="mt-6 flex justify-end space-x-4">
+                <button id="closeModalButton" class="px-6 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300">Cancel</button>
+                <button id="getRecommendationButton" class="px-6 py-2 bg-[#004FFF] text-white rounded-lg hover:bg-[#003BCC] flex items-center">
+                    <span id="buttonText">Get Recommendation</span>
+                    <div id="loadingSpinner" class="spinner w-5 h-5 rounded-full border-2 border-t-transparent ml-2 hidden"></div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+
+        const wrapLabel = (label, maxWidth = 16) => {
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + ' ' + word).trim().length > maxWidth) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            });
+            if (currentLine) {
+                lines.push(currentLine.trim());
+            }
+            return lines;
+        };
+        
+        const palette = {
+            blue: '#004FFF',
+            lightBlue: '#00B3FF',
+            purple: '#8200FF',
+            magenta: '#FF0073',
+            yellow: '#FFBF00'
+        };
+
+        const commonChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            },
+        };
+
+        new Chart(document.getElementById('acceleratorsChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Local Instance Isolation', 'Simpler App Logic (Less Caching)', 'Standard Framework Integration'],
+                datasets: [{
+                    label: 'Positive Impact on Velocity',
+                    data: [90, 80, 75],
+                    backgroundColor: 'rgba(0, 179, 255, 0.6)',
+                    borderColor: 'rgba(0, 179, 255, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: { ...commonChartOptions, indexAxis: 'y' }
+        });
+
+        new Chart(document.getElementById('inhibitorsChart'), {
+            type: 'bar',
+            data: {
+                labels: ['High Local Resource Cost', 'SQLScript Learning Curve', 'Walled Garden Ecosystem'],
+                datasets: [{
+                    label: 'Negative Impact on Velocity',
+                    data: [85, 95, 70],
+                    backgroundColor: 'rgba(255, 0, 115, 0.6)',
+                    borderColor: 'rgba(255, 0, 115, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: { ...commonChartOptions, indexAxis: 'y' }
+        });
+
+        new Chart(document.getElementById('resourceChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['SAP HANA Express (GB RAM)', 'PostgreSQL (GB RAM)'],
+                datasets: [{
+                    label: 'Required RAM',
+                    data: [24, 2],
+                    backgroundColor: [palette.magenta, palette.lightBlue],
+                    hoverOffset: 4
+                }]
+            },
+            options: { ...commonChartOptions }
+        });
+        
+        const radarLabelsRaw = [
+            'Ease of Local Setup', 
+            'Low Resource Cost', 
+            'Community Support', 
+            'Seamless Path to Prod', 
+            'Low Learning Curve', 
+            'Low Licensing Cost',
+            'Raw Analytical Speed'
+        ];
+        const radarLabelsWrapped = radarLabelsRaw.map(label => wrapLabel(label));
+
+        new Chart(document.getElementById('comparisonRadarChart'), {
+            type: 'radar',
+            data: {
+                labels: radarLabelsWrapped,
+                datasets: [{
+                    label: 'SAP HANA',
+                    data: [4, 2, 5, 1, 3, 3, 10],
+                    fill: true,
+                    backgroundColor: 'rgba(130, 0, 255, 0.2)',
+                    borderColor: palette.purple,
+                    pointBackgroundColor: palette.purple,
+                }, {
+                    label: 'PostgreSQL',
+                    data: [9, 9, 9, 9, 8, 10, 6],
+                    fill: true,
+                    backgroundColor: 'rgba(0, 179, 255, 0.2)',
+                    borderColor: palette.lightBlue,
+                    pointBackgroundColor: palette.lightBlue,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    },
+                    legend: {
+                        position: 'top',
+                    }
+                },
+                scales: {
+                    r: {
+                        angleLines: {
+                            display: false
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 10,
+                        pointLabels: {
+                            font: {
+                                size: 10
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        const modal = document.getElementById('geminiModal');
+        const showModalButton = document.getElementById('showModalButton');
+        const closeModalButton = document.getElementById('closeModalButton');
+        const getRecommendationButton = document.getElementById('getRecommendationButton');
+        const projectDescription = document.getElementById('projectDescription');
+        const geminiResponseContainer = document.getElementById('geminiResponse');
+        const geminiContent = document.getElementById('geminiContent');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        const buttonText = document.getElementById('buttonText');
+
+        const showModal = () => {
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modal.querySelector('div').classList.remove('scale-95');
+            }, 10);
+        };
+
+        const hideModal = () => {
+            modal.classList.add('opacity-0');
+            modal.querySelector('div').classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        };
+
+        showModalButton.addEventListener('click', showModal);
+        closeModalButton.addEventListener('click', hideModal);
+
+        getRecommendationButton.addEventListener('click', async () => {
+            const description = projectDescription.value.trim();
+            if (!description) {
+                alert('Please describe your project.');
+                return;
+            }
+
+            loadingSpinner.classList.remove('hidden');
+            buttonText.textContent = 'Analyzing...';
+            getRecommendationButton.disabled = true;
+
+            const context = `
+                You are an expert enterprise architect. Your task is to recommend a strategic path for a new Java project that needs to decide on its database strategy regarding SAP HANA.
+
+                Here is the situation:
+                1.  **The Core Problem:** We can use containerized SAP HANA for development (via Docker), but SAP does not support containerized HANA for production. This breaks the DevOps principle of environment parity.
+                2.  **HANA's Strengths:** It offers incredible real-time analytical performance (HTAP), making it ideal for applications that need to analyze live transactional data.
+                3.  **The Three Strategic Paths:**
+                    * **Path A (Pragmatic Hybrid):** Use containerized HANA for dev, but deploy to a traditional, certified VM/server for production. This accepts the environment gap to balance dev speed and production support.
+                    * **Path B (Cloud-Native Alignment):** Go all-in on the SAP cloud ecosystem. Use the SAP Business Technology Platform (BTP) and target SAP HANA Cloud. This aligns with SAP's official roadmap but increases vendor lock-in.
+                    * **Path C (Decoupled Stack):** Use a container-native database like PostgreSQL for most applications. Only use HANA for specific applications that absolutely require its unique HTAP capabilities. This maximizes DevOps alignment but may create data silos.
+
+                **User's Project Goal:** "${description}"
+
+                **Your Task:**
+                Based on the user's project goal, recommend ONE of the three paths (A, B, or C). Provide a clear, concise, and well-structured recommendation.
+                
+                **Output Format:**
+                1.  Start with "### Recommended Path: [Name of the Path]".
+                2.  Follow with a section "#### Why this path is the best fit:".
+                3.  Provide 3-4 bullet points explaining your reasoning, directly connecting it to the user's project description.
+                4.  Add a section "#### Key considerations and next steps:".
+                5.  Provide 2-3 bullet points on what the team should watch out for or do next.
+            `;
+
+            try {
+                let chatHistory = [{ role: "user", parts: [{ text: context }] }];
+                const payload = { contents: chatHistory };
+                const apiKey = "";
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+                
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API call failed with status: ${response.status}`);
+                }
+
+                const result = await response.json();
+                
+                let text = 'Sorry, I could not generate a recommendation at this time.';
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    text = result.candidates[0].content.parts[0].text;
+                }
+                
+                let htmlContent = text
+                    .replace(/### (.*)/g, '<h4 class="text-xl font-bold text-[#004FFF] mb-2">$1</h4>')
+                    .replace(/#### (.*)/g, '<h5 class="text-lg font-semibold text-gray-800 mt-4 mb-2">$1</h5>')
+                    .replace(/\* \*(.*?)\* \*/g, '<strong>$1</strong>')
+                    .replace(/\* (.*?)(?=\n\*|\n\n|$)/g, '<li class="ml-5 list-disc">$1</li>')
+                    .replace(/<\/li>\n/g, '</li>');
+
+                htmlContent = htmlContent.replace(/<li/g, '<ul><li').replace(/<\/li>(?!<li)/g, '</li></ul>');
+                while (htmlContent.includes('</ul><ul>')) {
+                    htmlContent = htmlContent.replace('</ul><ul>', '');
+                }
+
+
+                geminiContent.innerHTML = htmlContent;
+                geminiResponseContainer.classList.remove('hidden');
+                hideModal();
+                geminiResponseContainer.scrollIntoView({ behavior: 'smooth' });
+
+            } catch (error) {
+                console.error("Error calling Gemini API:", error);
+                geminiContent.innerHTML = '<p class="text-red-500">An error occurred while generating the recommendation. Please check the console for details.</p>';
+                geminiResponseContainer.classList.remove('hidden');
+            } finally {
+                loadingSpinner.classList.add('hidden');
+                buttonText.textContent = 'Get Recommendation';
+                getRecommendationButton.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mind Map: SAP HANA for Containerized Java Development</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb;
+        }
+        .mindmap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .node {
+            padding: 0.75rem 1.25rem;
+            border-radius: 9999px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            font-weight: 600;
+            text-align: center;
+            border: 1px solid;
+            flex-shrink: 0;
+        }
+        .central-node {
+            background-color: #3b82f6;
+            color: white;
+            border-color: #2563eb;
+            font-size: 1.25rem;
+            padding: 1.5rem 2.5rem;
+        }
+        .branch-node {
+            background-color: #dbeafe;
+            color: #1e40af;
+            border-color: #93c5fd;
+        }
+        .sub-branch-node {
+            background-color: #e0e7ff;
+            color: #3730a3;
+            border-color: #c7d2fe;
+        }
+        .leaf-node {
+            background-color: white;
+            color: #374151;
+            border-color: #e5e7eb;
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+        .connector {
+            flex-grow: 1;
+            border-bottom: 2px solid #d1d5db;
+        }
+        .branch-container {
+            display: flex;
+            align-items: center;
+        }
+        .sub-branches {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding-left: 1.5rem;
+            border-left: 2px solid #d1d5db;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mindmap">
+        <div class="flex flex-col md:flex-row items-center gap-4">
+            
+            <!-- Left Branch: Strategic Imperative -->
+            <div class="flex flex-col gap-8">
+                <!-- Branch 1.1 -->
+                <div class="branch-container flex-row-reverse">
+                    <div class="node branch-node">Strategic Imperative</div>
+                    <div class="connector"></div>
+                    <div class="sub-branches">
+                        <!-- Sub-branch 1.1.1 -->
+                        <div class="branch-container flex-row-reverse">
+                            <div class="node sub-branch-node">Core Architecture</div>
+                            <div class="connector"></div>
+                            <div class="sub-branches">
+                                <div class="node leaf-node">In-Memory (Speed)</div>
+                                <div class="node leaf-node">Columnar (Analytics & Compression)</div>
+                                <div class="node leaf-node">MPP (Scalability)</div>
+                            </div>
+                        </div>
+                        <!-- Sub-branch 1.1.2 -->
+                         <div class="branch-container flex-row-reverse">
+                            <div class="node sub-branch-node">HTAP Paradigm</div>
+                            <div class="connector"></div>
+                            <div class="sub-branches">
+                                <div class="node leaf-node">Combines OLTP & OLAP</div>
+                                <div class="node leaf-node">Eliminates ETL Latency</div>
+                                <div class="node leaf-node">Enables "Real-Time Enterprise"</div>
+                            </div>
+                        </div>
+                        <!-- Sub-branch 1.1.3 -->
+                        <div class="branch-container flex-row-reverse">
+                            <div class="node sub-branch-node">Multi-Model Engine</div>
+                            <div class="connector"></div>
+                            <div class="sub-branches">
+                                <div class="node leaf-node">Graph, Spatial, JSON, etc.</div>
+                                <div class="node leaf-node">Centralizes Persistence</div>
+                                <div class="node leaf-node">Increases Vendor Lock-In</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Central Node -->
+            <div class="node central-node my-8 md:my-0">
+                SAP HANA &<br>Containerized Java
+            </div>
+
+            <!-- Right Branch: Containerization Conundrum -->
+            <div class="flex flex-col gap-8">
+                 <!-- Branch 2.1 -->
+                <div class="branch-container">
+                    <div class="node branch-node">Containerization Conundrum</div>
+                    <div class="connector"></div>
+                    <div class="sub-branches">
+                        <!-- Sub-branch 2.1.1 -->
+                        <div class="branch-container">
+                            <div class="node sub-branch-node">Official Policy (Production)</div>
+                            <div class="connector"></div>
+                            <div class="sub-branches">
+                                <div class="node leaf-node text-red-600">Unsupported in Containers</div>
+                                <div class="node leaf-node">Per SAP Note 1122387</div>
+                                <div class="node leaf-node">High Operational Risk</div>
+                            </div>
+                        </div>
+                        <!-- Sub-branch 2.1.2 -->
+                         <div class="branch-container">
+                            <div class="node sub-branch-node">Developer Practice</div>
+                            <div class="connector"></div>
+                             <div class="sub-branches">
+                                <div class="node leaf-node text-green-600">`hanaexpress` Docker Image</div>
+                                <div class="node leaf-node">Sanctioned for Dev</div>
+                                <div class="node leaf-node">Creates Policy Ambiguity</div>
+                            </div>
+                        </div>
+                        <!-- Sub-branch 2.1.3 -->
+                        <div class="branch-container">
+                            <div class="node sub-branch-node">The Conflict & Result</div>
+                            <div class="connector"></div>
+                             <div class="sub-branches">
+                                <div class="node leaf-node">Breaks Environmental Parity</div>
+                                <div class="node leaf-node">"Two-Pipeline" Problem</div>
+                                <div class="node leaf-node">Strategic push to HANA Cloud</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
